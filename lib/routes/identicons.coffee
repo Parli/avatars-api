@@ -1,9 +1,10 @@
+Identicon = require('identicon.js')
+md5 = require('md5')
 router = require('express').Router()
 common = require('./common.coffee')
-Identicon = require('identicon.js')
 
 router.param 'id', (req, res, next, id) ->
-  identicon = new Identicon(id.replace('-',''), 400).toString()
+  identicon = new Identicon(md5(id), 400).toString()
   req.identicon = new Buffer(identicon, 'base64')
   next()
 
