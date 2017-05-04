@@ -1,4 +1,4 @@
-Identicon = require('identicon.js')
+Identicon = require('../identicon.js')
 md5 = require('md5')
 router = require('express').Router()
 common = require('./common.coffee')
