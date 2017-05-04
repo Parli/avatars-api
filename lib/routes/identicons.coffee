@@ -8,8 +8,13 @@ unfuck = (buffer, callback) ->
   imageMagick(buffer, 'identicon.png')
     .stream('png', callback)
 
+identiconOptions =
+  size  : 400
+  margin: 0.2
+  background: [255, 255, 255, 255]
+
 router.param 'id', (req, res, next, id) ->
-  identicon = new Identicon(md5(id), 400).toString()
+  identicon = new Identicon(md5(id), identiconOptions).toString()
   req.identicon = new Buffer(identicon, 'base64')
   next()
 
