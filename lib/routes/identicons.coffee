@@ -12,6 +12,8 @@ identiconOptions =
   size  : 400
   margin: 0.2
   background: [255, 255, 255, 255]
+  saturation: 0.8
+  brightness: 0.4
 
 router.param 'id', (req, res, next, id) ->
   identicon = new Identicon(md5(id), identiconOptions).toString()
