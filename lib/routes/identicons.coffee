@@ -10,7 +10,7 @@ unfuck = (buffer, callback) ->
 
 identiconOptions =
   size  : 400
-  margin: 0.2
+  margin: 0.22
   background: [255, 255, 255, 255]
   saturation: 0.8
   brightness: 0.4
