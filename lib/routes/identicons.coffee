@@ -24,12 +24,16 @@ unfuck = (buffer, callback) ->
   imageMagick(buffer, 'identicon.png')
     .stream('png', callback)
 
+etagPrefix = 'parli-identicon-v1'
+
 router.get '/:id', (req, res, next) ->
+  res.set 'ETag': "#{etagPrefix}|#{req.params.id}"
   unfuck mkIdenticon(req.params.id), (err, stdout) ->
     common.sendImage(err, stdout, req, res, next)
 
 # with custom size
 router.get '/:size/:id', (req, res, next) ->
+  res.set 'ETag': "#{etagPrefix}|#{req.params.id}"
   unfuck mkIdenticon(req.params.id, req.params.size), (err, stdout) ->
     common.sendImage(err, stdout, req, res, next)
 

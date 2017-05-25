@@ -21,12 +21,16 @@ router.get '/list', (req, res, next) ->
     .set('Content-Type', 'application/json')
     .send(response)
 
+etagPrefix = 'parli-avatar-v0'
+
 router.get '/:id', (req, res, next) ->
+  res.set 'ETag': "#{etagPrefix}|#{req.params.id}"
   imager.combine req.faceParts, (err, stdout) ->
     common.sendImage(err, stdout, req, res, next)
 
 # with custom size
 router.get '/:size/:id', (req, res, next) ->
+  res.set 'ETag': "#{etagPrefix}|#{req.params.id}"
   imager.combine req.faceParts, req.params.size, (err, stdout) ->
     common.sendImage(err, stdout, req, res, next)
 
