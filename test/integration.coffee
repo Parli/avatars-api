@@ -15,12 +15,12 @@ describe 'routing', ->
   beforeEach ->
     request = supertest(webserver)
 
-  describe 'root', ->
-    it 'redirects to the one-pager', (done) ->
-      request.get('/')
-        .expect(302)
-        .expect('location', 'http://avatars.adorable.io')
-        .end(done)
+  # describe 'root', ->
+  #   it 'redirects to the one-pager', (done) ->
+  #     request.get('/')
+  #       .expect(302)
+  #       .expect('location', 'http://avatars.adorable.io')
+  #       .end(done)
 
   describe 'v1 avatar request', ->
     it 'responds with an image', (done) ->
