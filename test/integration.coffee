@@ -68,3 +68,17 @@ describe 'routing', ->
           faceParts = res.body.face
           expect(faceParts).to.have.keys('eyes', 'mouth', 'nose')
           done()
+
+  describe 'identicon request', ->
+    it 'responds with an image', (done) ->
+      request.get('/identicons/abott')
+        .expect('Content-Type', /image/)
+        .end(done)
+
+    it 'can resize an image', (done) ->
+      request.get('/identicons/220/abott')
+        .parse(parseImage)
+        .end (err, res) ->
+          im(res.body).size (err, size) ->
+            expect(size).to.eql(height: 220, width: 220)
+            done()
