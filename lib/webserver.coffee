@@ -17,9 +17,8 @@ faviconPath   = path.join(basePath, 'app', 'favicon.ico')
 # Configure the express server
 app.engine('.html', require('ejs').__express)
 app.use(favicon(faviconPath))
-app.get '/', (req, res) ->
-  res.status(404).send()
-  # res.redirect('http://avatars.adorable.io')
+# app.get '/', (req, res) ->
+#   res.redirect('http://avatars.adorable.io')
 if process.env.NODE_ENV == 'production'
   app.use(require('./tracker'))
 # app.use('/avatar', require('./routes/v1'))
